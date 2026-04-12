@@ -6,7 +6,7 @@ import Services from "./components/Servies";
 import Work from "./components/Work";
 import ContactForm from "./components/ContactForm";
 import Footer from "./components/Footer";
-import { styles } from "./styles";
+import { styles } from "../styles";
 
 //where the app start
 
