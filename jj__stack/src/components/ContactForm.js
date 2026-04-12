@@ -3,10 +3,10 @@ import emailjs from "@emailjs/browser";
 import { styles } from "../styles";
 import { services } from "../data";
 
-// ⬇️ Replace these with your EmailJS credentials
-const EMAILJS_SERVICE_ID = "YOUR_SERVICE_ID";
-const EMAILJS_TEMPLATE_ID = "YOUR_TEMPLATE_ID";
-const EMAILJS_PUBLIC_KEY = "YOUR_PUBLIC_KEY";
+
+const EMAILJS_SERVICE_ID = "service_opet21e";
+const EMAILJS_TEMPLATE_ID = "template_w74oapb";
+const EMAILJS_PUBLIC_KEY = "mzj0s4YZofWBWrjVm";
 
 const ContactForm = forwardRef(({ sectionAnim }, ref) => {
   const [formData, setFormData] = useState({
