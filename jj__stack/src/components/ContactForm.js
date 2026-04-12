@@ -81,7 +81,7 @@ const ContactForm = forwardRef(({ sectionAnim }, ref) => {
               fontFamily: "DM Sans, sans-serif",
             }}>
               Thanks {formData.name}! We'll review your project
-              details and get back within 24 hours.
+              details and get back within 48 hours.
             </p>
             <button onClick={reset} style={{
               ...styles.btnSecondary, marginTop: 24,
