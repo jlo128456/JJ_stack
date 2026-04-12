@@ -14,7 +14,7 @@ function Navbar({ scrollY }) {
       background: scrollY > 50 ? "#07090dcc" : "transparent",
     }}>
       <div className="nav-inner" style={styles.navInner}>
-        <img src={LOGO} alt="JJ Stak" style={styles.logoImg} />
+        
 
         {/* Desktop Links */}
         <div className="nav-links" style={styles.navLinks}>
