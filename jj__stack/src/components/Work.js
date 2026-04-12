@@ -6,6 +6,7 @@ const Work = forwardRef(({ sectionAnim }, ref) => (
   <section
     id="work"
     ref={ref}
+    className="section"
     style={{
       ...styles.section,
       ...sectionAnim("work"),
@@ -14,10 +15,18 @@ const Work = forwardRef(({ sectionAnim }, ref) => (
   >
     <div style={styles.container}>
       <div style={styles.sectionLabel}>△ SELECTED WORK</div>
-      <h2 style={styles.sectionTitle}>Recent Projects</h2>
-      <div style={styles.projectsGrid}>
+      <h2 className="section-title" style={styles.sectionTitle}>
+        Recent Projects
+      </h2>
+      <div className="projects-grid" style={styles.projectsGrid}>
         {projects.map((p) => (
-          <a key={p.name} href={p.url} target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none" }}>
+          <a
+            key={p.name}
+            href={p.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ textDecoration: "none" }}
+          >
             <div style={styles.projectCard}>
               <div style={{
                 ...styles.projectThumb,
