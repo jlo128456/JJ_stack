@@ -2,7 +2,6 @@ import { useState } from "react";
 import { styles } from "../styles";
 
 const navItems = ["Home", "Services", "Work", "Contact"];
-const LOGO = "/logo512.png";
 
 function Navbar({ scrollY }) {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -13,11 +12,17 @@ function Navbar({ scrollY }) {
       backdropFilter: scrollY > 50 ? "blur(20px)" : "none",
       background: scrollY > 50 ? "#07090dcc" : "transparent",
     }}>
-      <div className="nav-inner" style={styles.navInner}>
-        
+      <div className="nav-inner" style={{
+        ...styles.navInner,
+        justifyContent: "center",
+        position: "relative",
+      }}>
 
-        {/* Desktop Links */}
-        <div className="nav-links" style={styles.navLinks}>
+        {/* Centered Links */}
+        <div className="nav-links" style={{
+          display: "flex",
+          gap: 40,
+        }}>
           {navItems.map((item) => (
             <a key={item} href={`#${item.toLowerCase()}`} style={styles.navLink}>
               {item}
@@ -25,11 +30,16 @@ function Navbar({ scrollY }) {
           ))}
         </div>
 
-        <a href="#contact" className="nav-cta-desktop" style={styles.navCta}>
+        {/* CTA - right side */}
+        <a href="#contact" className="nav-cta-desktop" style={{
+          ...styles.navCta,
+          position: "absolute",
+          right: 24,
+        }}>
           Start a Project
         </a>
 
-        {/* Hamburger Button */}
+        {/* Hamburger */}
         <button
           className="hamburger"
           onClick={() => setMenuOpen(!menuOpen)}
@@ -42,6 +52,8 @@ function Navbar({ scrollY }) {
             cursor: "pointer",
             padding: 8,
             zIndex: 200,
+            position: "absolute",
+            right: 16,
           }}
         >
           <span style={{
@@ -66,10 +78,7 @@ function Navbar({ scrollY }) {
       {menuOpen && (
         <div style={{
           position: "fixed",
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
+          top: 0, left: 0, right: 0, bottom: 0,
           background: "#07090df0",
           backdropFilter: "blur(20px)",
           display: "flex",
@@ -80,26 +89,17 @@ function Navbar({ scrollY }) {
           zIndex: 150,
         }}>
           {navItems.map((item) => (
-            <a
-              key={item}
-              href={`#${item.toLowerCase()}`}
+            <a key={item} href={`#${item.toLowerCase()}`}
               onClick={() => setMenuOpen(false)}
               style={{
-                color: "#fff",
-                textDecoration: "none",
-                fontSize: 24,
-                fontFamily: "Syne, sans-serif",
-                fontWeight: 700,
-              }}
-            >
+                color: "#fff", textDecoration: "none", fontSize: 24,
+                fontFamily: "Syne, sans-serif", fontWeight: 700,
+              }}>
               {item}
             </a>
           ))}
-          <a
-            href="#contact"
-            onClick={() => setMenuOpen(false)}
-            style={{ ...styles.navCta, marginTop: 16, fontSize: 16, padding: "14px 32px" }}
-          >
+          <a href="#contact" onClick={() => setMenuOpen(false)}
+            style={{ ...styles.navCta, marginTop: 16, fontSize: 16, padding: "14px 32px" }}>
             Start a Project
           </a>
         </div>
