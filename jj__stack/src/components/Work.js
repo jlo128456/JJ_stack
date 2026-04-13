@@ -6,7 +6,7 @@ import { projects } from "../data";
 const MOCKUP = {
   "Web app":          "desktop-mobile",  // screenshot on monitor + phone
   "Prefect Agencies": "desktop",         // screenshot on monitor only
-  "JJ Stack":         "icon",            // image contained inside monitor
+  "JJ Stack":         "desktop-mobile",  // image contained inside monitor
 };
 
 /* ─── shared frame wrapper ─── */
