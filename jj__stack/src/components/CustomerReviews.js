@@ -5,8 +5,6 @@ import { StarIcon, StarRating } from "./StarComponents";
 import ReviewCard from "./ReviewCard";
 import ReviewForm from "./ReviewForm";
 
-const font = "'DM Sans', sans-serif";
-
 export default function CustomerReviews() {
   const [reviews, setReviews] = useState([]);
   const [showForm, setShowForm] = useState(false);
@@ -41,8 +39,7 @@ export default function CustomerReviews() {
   };
 
   return (
-    <div style={{ minHeight: "100vh", background: "linear-gradient(165deg, #FAFAFA 0%, #F3F0FF 50%, #FFF7ED 100%)", padding: "40px 20px" }}>
-      <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
+    <section className="section" style={{ background: "transparent", padding: "100px 20px" }}>
       <style>{`
         @keyframes fadeSlideIn { from { opacity:0; transform:translateY(16px); } to { opacity:1; transform:translateY(0); } }
         @keyframes popIn { 0% { opacity:0; transform:scale(0.92); } 60% { transform:scale(1.02); } 100% { opacity:1; transform:scale(1); } }
@@ -50,39 +47,64 @@ export default function CustomerReviews() {
       `}</style>
 
       <div style={{ maxWidth: 680, margin: "0 auto" }}>
-        <div style={{ textAlign: "center", marginBottom: 40, animation: "fadeSlideIn 0.5s ease both" }}>
-          <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: 36, fontWeight: 700, color: "#111827", margin: "0 0 6px" }}>Customer Reviews</h2>
-          <p style={{ fontFamily: font, fontSize: 15, color: "#6B7280", margin: 0 }}>Hear what our customers have to say</p>
+        {/* Header */}
+        <div style={{ textAlign: "center", marginBottom: 48, animation: "fadeSlideIn 0.5s ease both" }}>
+          <h2 className="section-title" style={{
+            fontFamily: "'Syne', sans-serif", fontSize: 36, fontWeight: 700,
+            color: "#fff", margin: "0 0 10px", letterSpacing: "-0.02em",
+          }}>
+            Customer Reviews
+          </h2>
+          <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 15, color: "#666", margin: 0, fontWeight: 300 }}>
+            Hear what our customers have to say
+          </p>
         </div>
 
         {/* Stats */}
-        <div style={{ display: "flex", alignItems: "center", gap: 32, background: "white", borderRadius: 20, padding: "28px 32px", marginBottom: 28, boxShadow: "0 1px 3px rgba(0,0,0,0.04)", border: "1px solid #F3F4F6", animation: "fadeSlideIn 0.5s ease 0.1s both", flexWrap: "wrap", justifyContent: "center" }}>
+        <div style={{
+          display: "flex", alignItems: "center", gap: 32, background: "#0d0f14",
+          borderRadius: 12, padding: "28px 32px", marginBottom: 24,
+          border: "1px solid #1a1d25", animation: "fadeSlideIn 0.5s ease 0.1s both",
+          flexWrap: "wrap", justifyContent: "center",
+        }}>
           <div style={{ textAlign: "center", minWidth: 100 }}>
-            <div style={{ fontFamily: "'Playfair Display', serif", fontSize: 48, fontWeight: 700, color: "#111827", lineHeight: 1 }}>{avgRating}</div>
+            <div style={{ fontFamily: "'Syne', sans-serif", fontSize: 48, fontWeight: 700, color: "#c9a227", lineHeight: 1 }}>
+              {avgRating}
+            </div>
             <StarRating value={Math.round(parseFloat(avgRating))} size={16} />
-            <div style={{ fontFamily: font, fontSize: 13, color: "#9CA3AF", marginTop: 4 }}>{reviews.length} review{reviews.length !== 1 ? "s" : ""}</div>
+            <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 13, color: "#555", marginTop: 6, fontWeight: 300 }}>
+              {reviews.length} review{reviews.length !== 1 ? "s" : ""}
+            </div>
           </div>
-          <div style={{ width: 1, height: 70, background: "#E5E7EB", flexShrink: 0 }} />
-          <div style={{ display: "flex", flexDirection: "column", gap: 5, flex: 1, minWidth: 200 }}>
+          <div style={{ width: 1, height: 70, background: "#1a1d25", flexShrink: 0 }} />
+          <div style={{ display: "flex", flexDirection: "column", gap: 6, flex: 1, minWidth: 200 }}>
             {[5, 4, 3, 2, 1].map((star) => {
               const pct = reviews.length ? (ratingCounts[star - 1] / reviews.length) * 100 : 0;
               return (
                 <div key={star} style={{ display: "flex", alignItems: "center", gap: 10 }}>
-                  <span style={{ fontFamily: font, fontSize: 13, color: "#6B7280", width: 14, textAlign: "right" }}>{star}</span>
+                  <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 13, color: "#555", width: 14, textAlign: "right" }}>{star}</span>
                   <StarIcon filled size={14} />
-                  <div style={{ flex: 1, height: 8, background: "#F3F4F6", borderRadius: 4, overflow: "hidden" }}>
-                    <div style={{ height: "100%", width: `${pct}%`, background: "linear-gradient(90deg, #F59E0B, #FBBF24)", borderRadius: 4, transition: "width 0.6s ease" }} />
+                  <div style={{ flex: 1, height: 6, background: "#1a1d25", borderRadius: 3, overflow: "hidden" }}>
+                    <div style={{ height: "100%", width: `${pct}%`, background: "linear-gradient(90deg, #c9a227, #d4b84a)", borderRadius: 3, transition: "width 0.6s ease" }} />
                   </div>
-                  <span style={{ fontFamily: font, fontSize: 12, color: "#9CA3AF", width: 20 }}>{ratingCounts[star - 1]}</span>
+                  <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 12, color: "#444", width: 20 }}>{ratingCounts[star - 1]}</span>
                 </div>
               );
             })}
           </div>
         </div>
 
-        {/* Form toggle */}
+        {/* Write review button */}
         {!showForm && !submitted && (
-          <button onClick={() => setShowForm(true)} style={{ display: "block", width: "100%", padding: 16, background: "#111827", color: "white", border: "none", borderRadius: 14, fontFamily: font, fontSize: 15, fontWeight: 600, cursor: "pointer", marginBottom: 28, animation: "fadeSlideIn 0.4s ease 0.2s both" }}>
+          <button onClick={() => setShowForm(true)} style={{
+            display: "block", width: "100%", padding: 16, background: "#c9a227", color: "#07090d",
+            border: "none", borderRadius: 8, fontFamily: "'Syne', sans-serif", fontSize: 15,
+            fontWeight: 600, cursor: "pointer", marginBottom: 24, transition: "all 0.3s",
+            animation: "fadeSlideIn 0.4s ease 0.2s both", boxShadow: "0 0 20px #c9a22720",
+          }}
+            onMouseEnter={(e) => { e.currentTarget.style.boxShadow = "0 0 40px #c9a22740"; e.currentTarget.style.transform = "translateY(-1px)"; }}
+            onMouseLeave={(e) => { e.currentTarget.style.boxShadow = "0 0 20px #c9a22720"; e.currentTarget.style.transform = "translateY(0)"; }}
+          >
             Write a Review
           </button>
         )}
@@ -90,18 +112,30 @@ export default function CustomerReviews() {
         {showForm && !submitted && <ReviewForm onSubmit={handleSubmit} onCancel={() => setShowForm(false)} />}
 
         {submitted && (
-          <div style={{ background: "white", borderRadius: 20, padding: "36px 28px", marginBottom: 28, textAlign: "center", boxShadow: "0 4px 16px rgba(0,0,0,0.06)", border: "1px solid #E5E7EB", animation: "popIn 0.35s ease both" }}>
-            <div style={{ width: 52, height: 52, borderRadius: "50%", background: "#ECFDF5", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 14px", animation: "checkPop 0.4s ease 0.15s both" }}>
-              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#10B981" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12" /></svg>
+          <div style={{
+            background: "#0d0f14", borderRadius: 12, padding: "36px 28px", marginBottom: 24,
+            textAlign: "center", border: "1px solid #1a1d25", animation: "popIn 0.35s ease both",
+          }}>
+            <div style={{
+              width: 52, height: 52, borderRadius: "50%", background: "#c9a22715",
+              display: "flex", alignItems: "center", justifyContent: "center",
+              margin: "0 auto 14px", animation: "checkPop 0.4s ease 0.15s both",
+            }}>
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#c9a227" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
             </div>
-            <div style={{ fontFamily: font, fontSize: 16, fontWeight: 600, color: "#111827" }}>Thank you for your review!</div>
+            <div style={{ fontFamily: "'Syne', sans-serif", fontSize: 16, fontWeight: 600, color: "#fff" }}>
+              Thank you for your review!
+            </div>
           </div>
         )}
 
-        <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+        {/* Reviews list */}
+        <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
           {reviews.map((review, i) => <ReviewCard key={review.id} review={review} index={i} />)}
         </div>
       </div>
-    </div>
+    </section>
   );
 }

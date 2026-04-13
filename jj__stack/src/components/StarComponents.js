@@ -1,5 +1,8 @@
 import { useState } from "react";
 
+const GOLD = "#c9a227";
+const DIM = "#2a2518";
+
 export function StarIcon({ filled, size = 20, onClick, hoverable }) {
   return (
     <svg
@@ -20,8 +23,8 @@ export function StarIcon({ filled, size = 20, onClick, hoverable }) {
     >
       <path
         d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
-        fill={filled ? "#F59E0B" : "#D1D5DB"}
-        stroke={filled ? "#D97706" : "#9CA3AF"}
+        fill={filled ? GOLD : DIM}
+        stroke={filled ? GOLD : "#1e1e1e"}
         strokeWidth="0.5"
       />
     </svg>
