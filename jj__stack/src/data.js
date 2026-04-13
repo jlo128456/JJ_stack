@@ -9,6 +9,7 @@ export const services = [
 ];
 
 export const projects = [
-  { name: "PA Digital", type: "Job Management CRM", color: "#c9a227", url: "https://padigital.com.au" },
-  { name: "JJ Stak", type: "Company Website", color: "#c9a227", url: "https://jjstack.com.au" },
+  { name: "Web app", type: "Job Management CRM", color: "#c9a227", url: "https://padigital.com.au" },
+  { name: "Job Managment program", type: "Python CRM — Work orders, customers, inventory & invoicing. Tailored for your business.", url: null, image: "/pa-crm.png" },
+  { name: "JJ Stack", type: "Company Website", color: "#c9a227", url: "https://jjstack.com.au" },
 ];
