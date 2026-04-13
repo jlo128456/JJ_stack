@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo } from "react";
-import { db } from "./firebase";
+import { db } from "../firebase";
 import { collection, addDoc, getDocs, orderBy, query } from "firebase/firestore";
 import { StarIcon, StarRating } from "./StarComponents";
 import ReviewCard from "./ReviewCard";
