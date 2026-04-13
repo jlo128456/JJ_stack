@@ -5,6 +5,7 @@ import Hero from "./components/Hero";
 import Services from "./components/Services";
 import Work from "./components/Work";
 import ContactForm from "./components/ContactForm";
+import CustomerReviews from "./components/CustomerReviews";
 import Footer from "./components/Footer";
 import { styles } from "./styles";
 
@@ -47,6 +48,7 @@ function App()
      <GlobalStyles />
      <Navbar scrollY={scrollY} />
      <Hero ref={(el) => (refs.current.home = el)} sectionAnim={sectionAnim} />
+     <CustomerReviews />
      <Services ref={(el) => (refs.current.services = el)} sectionAnim={sectionAnim} />
      <Work ref={(el) => (refs.current.work = el)} sectionAnim ={sectionAnim} />
      <ContactForm ref ={(el) => (refs.current.contactForm = el)} sectionAnim={sectionAnim} />
