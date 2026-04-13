@@ -12,7 +12,7 @@ function Footer() {
           fontFamily: "DM Sans, sans-serif",
           fontSize: 14,
         }}>
-          © 2025 JJ Stak. Crafting software with precision.
+          © 2025 JJ Stack. Crafting software with precision.
         </p>
       </div>
     </footer>
