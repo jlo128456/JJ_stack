@@ -176,7 +176,7 @@ const Work = forwardRef(({ sectionAnim }, ref) => (
           );
 
           /* wrap in <a> only when url looks like a real external link */
-          const isExternalUrl = p.url?.startsWith("http");
+          const isExternalUrl = !!p.url;    //p.url?.startsWith("http");
           return isExternalUrl ? (
             <a
               key={p.name}
