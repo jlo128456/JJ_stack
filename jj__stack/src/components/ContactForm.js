@@ -65,7 +65,7 @@ const ContactForm = forwardRef(({ sectionAnim }, ref) => {
       <div style={styles.container}>
         <div style={styles.sectionLabel}>✦ LET'S TALK</div>
         <h2 className="section-title" style={styles.sectionTitle}>
-          Request a Service
+          Request a Qoute
         </h2>
         {submitted ? (
           <div style={styles.successMsg}>

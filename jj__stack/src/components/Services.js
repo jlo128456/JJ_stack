@@ -14,9 +14,8 @@ const Services = forwardRef(({ sectionAnim }, ref) => (
     }}
   >
     <div style={styles.container}>
-      <div style={styles.sectionLabel}>◈ WHAT WE DO</div>
-      <h2 className="section-title" style={styles.sectionTitle}>Services</h2>
-      <div className="services-grid" style={styles.servicesGrid}>
+      <div style={{styles.sectionLabel, fontSize: '1.5rem'}}>◈ WHAT WE DO</div>
+            <div className="services-grid" style={styles.servicesGrid}>
         {services.map((s, i) => (
           <div key={s.id} style={{ ...styles.serviceCard, animationDelay: `${i * 0.1}s` }}>
             <span style={styles.serviceIcon}>{s.icon}</span>
