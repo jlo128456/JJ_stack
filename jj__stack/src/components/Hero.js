@@ -27,7 +27,7 @@ const Hero = forwardRef(({ sectionAnim }, ref) => (
       </p>
       <div className="hero-ctas" style={styles.heroCtas}>
         <a href="#contact" className="btn-primary" style={styles.btnPrimary}>
-          Request a Service
+          Request a Quote
         </a>
         <a href="#work" className="btn-secondary" style={styles.btnSecondary}>
           View Work
