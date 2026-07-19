@@ -19,6 +19,7 @@ function GlobalStyles() {
         .hamburger { display: flex !important; }
         .mobile-menu { display: flex !important; }
         .services-grid { grid-template-columns: 1fr !important; }
+        .design-thumbs-row { grid-template-columns: repeat(2, 1fr) !important; }
         .projects-grid { grid-template-columns: 1fr !important; }
         .form-grid { grid-template-columns: 1fr !important; }
         .form-wrap { padding: 24px !important; }

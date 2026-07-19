@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { styles } from "../styles";
 
-const navItems = ["Home", "Services", "Work", "Contact"];
+const navItems = ["Home", "Designs", "Services", "Work", "Contact"];
 
 function Navbar({ scrollY }) {
   const [menuOpen, setMenuOpen] = useState(false);

@@ -9,6 +9,7 @@ import { sharedStyles } from "./shared";
 import { servicesStyles } from "./services";
 import { projectStyles } from "./projects";
 import { formStyles, footerStyles } from "./form";
+import { designPickerStyles } from "./designPicker";
 
 export const styles = {
 
@@ -29,4 +30,5 @@ export const styles = {
   ...projectStyles,
   ...formStyles,
   ...footerStyles,
+  ...designPickerStyles,
 };

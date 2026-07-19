@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import GlobalStyles from "./components/GlobalStyles";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
+import DesignPicker from "./components/DesignPicker";
 import Services from "./components/Services";
 import Work from "./components/Work";
 import ContactForm from "./components/ContactForm";
@@ -48,6 +49,7 @@ function App()
      <GlobalStyles />
      <Navbar scrollY={scrollY} />
      <Hero ref={(el) => (refs.current.home = el)} sectionAnim={sectionAnim} />
+     <DesignPicker ref={(el) => (refs.current.designs = el)} sectionAnim={sectionAnim} />
      <CustomerReviews />
      <Services ref={(el) => (refs.current.services = el)} sectionAnim={sectionAnim} />
      <Work ref={(el) => (refs.current.work = el)} sectionAnim ={sectionAnim} />
