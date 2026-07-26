@@ -1,4 +1,4 @@
-import { forwardRef, useState } from "react";
+import { forwardRef } from "react";
 import { styles } from "../styles";
 import { designTemplates } from "../data";
 
@@ -116,8 +116,7 @@ const TemplatePreview = ({ t }) => {
   );
 };
 
-const DesignPicker = forwardRef(({ sectionAnim }, ref) => {
-  const [selectedId, setSelectedId] = useState(designTemplates[0].id);
+const DesignPicker = forwardRef(({ sectionAnim, selectedId, onSelect }, ref) => {
   const selected = designTemplates.find((t) => t.id === selectedId) || designTemplates[0];
 
   return (
@@ -140,7 +139,7 @@ const DesignPicker = forwardRef(({ sectionAnim }, ref) => {
         <div style={styles.designPickerRow}>
           <select
             value={selectedId}
-            onChange={(e) => setSelectedId(e.target.value)}
+            onChange={(e) => onSelect(e.target.value)}
             style={styles.designSelect}
           >
             {designTemplates.map((t) => (
@@ -163,7 +162,7 @@ const DesignPicker = forwardRef(({ sectionAnim }, ref) => {
           {designTemplates.map((t) => (
             <div
               key={t.id}
-              onClick={() => setSelectedId(t.id)}
+              onClick={() => onSelect(t.id)}
               style={{
                 ...styles.designThumbCard,
                 ...(t.id === selectedId ? styles.designThumbCardActive : {}),

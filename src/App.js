@@ -9,6 +9,7 @@ import ContactForm from "./components/ContactForm";
 import CustomerReviews from "./components/CustomerReviews";
 import Footer from "./components/Footer";
 import { styles } from "./styles";
+import { designTemplates } from "./data";
 
 //where the app start
 
@@ -16,6 +17,7 @@ function App()
 {
    const [scrollY, setScrollY] =useState(0);
    const [visibleSections, setVisibleSections] = useState(new Set());
+   const [selectedDesign, setSelectedDesign] = useState(designTemplates[0].id);
    const refs =useRef({});
 
   useEffect(() => {
@@ -49,11 +51,21 @@ function App()
      <GlobalStyles />
      <Navbar scrollY={scrollY} />
      <Hero ref={(el) => (refs.current.home = el)} sectionAnim={sectionAnim} />
-     <DesignPicker ref={(el) => (refs.current.designs = el)} sectionAnim={sectionAnim} />
+     <DesignPicker
+       ref={(el) => (refs.current.designs = el)}
+       sectionAnim={sectionAnim}
+       selectedId={selectedDesign}
+       onSelect={setSelectedDesign}
+     />
      <CustomerReviews />
      <Services ref={(el) => (refs.current.services = el)} sectionAnim={sectionAnim} />
      <Work ref={(el) => (refs.current.work = el)} sectionAnim ={sectionAnim} />
-     <ContactForm ref ={(el) => (refs.current.contactForm = el)} sectionAnim={sectionAnim} />
+     <ContactForm
+       ref ={(el) => (refs.current.contactForm = el)}
+       sectionAnim={sectionAnim}
+       selectedDesign={selectedDesign}
+       onDesignChange={setSelectedDesign}
+     />
      <Footer /> 
    </div>
   );    

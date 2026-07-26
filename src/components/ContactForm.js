@@ -1,20 +1,29 @@
-import { useState, forwardRef } from "react";
+import { useState, forwardRef, useEffect } from "react";
 import emailjs from "@emailjs/browser";
 import { styles } from "../styles";
-import { services } from "../data";
+import { services, designTemplates } from "../data";
 
 
 const EMAILJS_SERVICE_ID = "service_opet21e";
 const EMAILJS_TEMPLATE_ID = "template_w74oapb";
 const EMAILJS_PUBLIC_KEY = "mzj0s4YZofWBWrjVm";
 
-const ContactForm = forwardRef(({ sectionAnim }, ref) => {
+const ContactForm = forwardRef(({ sectionAnim, selectedDesign, onDesignChange }, ref) => {
   const [formData, setFormData] = useState({
     name: "", email: "", service: "", budget: "", message: "",
+    design: selectedDesign || "",
   });
   const [submitted, setSubmitted] = useState(false);
   const [sending, setSending] = useState(false);
   const [error, setError] = useState("");
+
+  // keep the form's design field in sync if the visitor changes
+  // their pick up in the DesignPicker section
+  useEffect(() => {
+    if (selectedDesign) {
+      setFormData((prev) => ({ ...prev, design: selectedDesign }));
+    }
+  }, [selectedDesign]);
 
   const handleSubmit = async () => {
     if (!formData.name || !formData.email || !formData.service) return;
@@ -27,6 +36,10 @@ const ContactForm = forwardRef(({ sectionAnim }, ref) => {
         (s) => s.id === formData.service
       )?.title || formData.service;
 
+      const designName = designTemplates.find(
+        (d) => d.id === formData.design
+      )?.name || "Not specified";
+
       await emailjs.send(
         EMAILJS_SERVICE_ID,
         EMAILJS_TEMPLATE_ID,
@@ -35,6 +48,7 @@ const ContactForm = forwardRef(({ sectionAnim }, ref) => {
           email: formData.email,
           service: serviceName,
           budget: formData.budget || "Not specified",
+          design: designName,
           message: formData.message || "No details provided",
         },
         EMAILJS_PUBLIC_KEY
@@ -52,10 +66,17 @@ const ContactForm = forwardRef(({ sectionAnim }, ref) => {
   const reset = () => {
     setSubmitted(false);
     setError("");
-    setFormData({ name: "", email: "", service: "", budget: "", message: "" });
+    setFormData({
+      name: "", email: "", service: "", budget: "", message: "",
+      design: selectedDesign || "",
+    });
   };
 
-  const set = (key) => (e) => setFormData({ ...formData, [key]: e.target.value });
+  const set = (key) => (e) => {
+    const value = e.target.value;
+    setFormData({ ...formData, [key]: value });
+    if (key === "design" && onDesignChange) onDesignChange(value);
+  };
 
   return (
     <section id="contact" ref={ref} className="section" style={{
@@ -81,7 +102,8 @@ const ContactForm = forwardRef(({ sectionAnim }, ref) => {
               fontFamily: "DM Sans, sans-serif",
             }}>
               Thanks {formData.name}! We'll review your project
-              details and get back within 24 to 48 hours.
+              details — including the "{designTemplates.find((d) => d.id === formData.design)?.name}" design
+              you picked — and get back within 24 to 48 hours.
             </p>
             <button onClick={reset} style={{
               ...styles.btnSecondary, marginTop: 24,
@@ -123,6 +145,15 @@ const ContactForm = forwardRef(({ sectionAnim }, ref) => {
                   <option value="5k-15k">$5k – $15k</option>
                   <option value="15k-50k">$15k – $50k</option>
                   <option value="50k+">$50k+</option>
+                </select>
+              </div>
+              <div style={styles.fieldGroup}>
+                <label style={styles.label}>Preferred Design</label>
+                <select style={styles.input} value={formData.design}
+                  onChange={set("design")}>
+                  {designTemplates.map((d) => (
+                    <option key={d.id} value={d.id}>{d.name}</option>
+                  ))}
                 </select>
               </div>
             </div>
