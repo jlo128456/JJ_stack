@@ -3,7 +3,7 @@ import { styles } from "../styles";
 
 const LOGO = "/logo512.png";
 
-const Hero = forwardRef(({ sectionAnim }, ref) => (
+const Hero = forwardRef(({ sectionAnim, onNavigate }, ref) => (
   <section id="home" ref={ref} className="hero" style={styles.hero}>
     <div style={styles.heroGrid} />
     <img src={LOGO} alt="" style={styles.watermark} />
@@ -26,12 +26,12 @@ const Hero = forwardRef(({ sectionAnim }, ref) => (
         from concept to deployment. Clean code, bold design, reliable delivery.
       </p>
       <div className="hero-ctas" style={styles.heroCtas}>
-        <a href="#contact" className="btn-primary" style={styles.btnPrimary}>
+        <button onClick={() => onNavigate("contact")} className="btn-primary" style={{...styles.btnPrimary, border: "none", cursor: "pointer"}}>
           Request a Quote
-        </a>
-        <a href="#work" className="btn-secondary" style={styles.btnPrimary}>
+        </button>
+        <button onClick={() => onNavigate("work")} className="btn-secondary" style={{...styles.btnPrimary, border: "none", cursor: "pointer"}}>
           View Projects
-        </a>
+        </button>
       </div>
     </div>
     <div style={styles.scrollIndicator}>
