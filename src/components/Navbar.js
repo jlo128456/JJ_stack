@@ -4,6 +4,7 @@ import { styles } from "../styles";
 const navItems = [
   { label: "Home", id: "home" },
   { label: "Designs", id: "designs" },
+  { label: "Reviews", id: "reviews" },
   { label: "Services", id: "services" },
   { label: "Work", id: "work" },
   { label: "Contact", id: "contact" }

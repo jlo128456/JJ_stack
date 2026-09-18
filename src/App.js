@@ -14,6 +14,7 @@ import { styles } from "./styles";
 const SECTIONS = {
   home: "home",
   designs: "designs",
+  reviews: "reviews",
   services: "services",
   work: "work",
   contact: "contact"
@@ -65,26 +66,27 @@ function App() {
       {/* Only render visible section */}
       <div>
         {activeSection === SECTIONS.home && (
-          <Hero ref={(el) => (refs.current.home = el)} sectionAnim={sectionAnim} id="home" />
+          <Hero ref={(el) => (refs.current.home = el)} sectionAnim={sectionAnim} id="home" onNavigate={handleSectionChange} />
         )}
 
         {activeSection === SECTIONS.designs && (
-          <div>
-            <DesignPicker ref={(el) => (refs.current.designs = el)} sectionAnim={sectionAnim} id="designs" />
-            <CustomerReviews id="reviews" />
-          </div>
+          <DesignPicker ref={(el) => (refs.current.designs = el)} sectionAnim={sectionAnim} id="designs" onNavigate={handleSectionChange} />
+        )}
+
+        {activeSection === SECTIONS.reviews && (
+          <CustomerReviews ref={(el) => (refs.current.reviews = el)} sectionAnim={sectionAnim} id="reviews" onNavigate={handleSectionChange} />
         )}
 
         {activeSection === SECTIONS.services && (
-          <Services ref={(el) => (refs.current.services = el)} sectionAnim={sectionAnim} id="services" />
+          <Services ref={(el) => (refs.current.services = el)} sectionAnim={sectionAnim} id="services" onNavigate={handleSectionChange} />
         )}
 
         {activeSection === SECTIONS.work && (
-          <Work ref={(el) => (refs.current.work = el)} sectionAnim={sectionAnim} id="work" />
+          <Work ref={(el) => (refs.current.work = el)} sectionAnim={sectionAnim} id="work" onNavigate={handleSectionChange} />
         )}
 
         {activeSection === SECTIONS.contact && (
-          <ContactForm ref={(el) => (refs.current.contactForm = el)} sectionAnim={sectionAnim} id="contact" />
+          <ContactForm ref={(el) => (refs.current.contactForm = el)} sectionAnim={sectionAnim} id="contact" onNavigate={handleSectionChange} />
         )}
       </div>
 
