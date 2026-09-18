@@ -1,10 +1,21 @@
 import { useState } from "react";
 import { styles } from "../styles";
 
-const navItems = ["Home", "Designs", "Services", "Work", "Contact"];
+const navItems = [
+  { label: "Home", id: "home" },
+  { label: "Designs", id: "designs" },
+  { label: "Services", id: "services" },
+  { label: "Work", id: "work" },
+  { label: "Contact", id: "contact" }
+];
 
-function Navbar({ scrollY }) {
+function Navbar({ activeSection, onSectionChange, scrollY }) {
   const [menuOpen, setMenuOpen] = useState(false);
+
+  const handleNavClick = (sectionId) => {
+    onSectionChange(sectionId);
+    setMenuOpen(false);
+  };
 
   return (
     <nav style={{
@@ -24,20 +35,38 @@ function Navbar({ scrollY }) {
           gap: 40,
         }}>
           {navItems.map((item) => (
-            <a key={item} href={`#${item.toLowerCase()}`} style={styles.navLink}>
-              {item}
-            </a>
+            <button
+              key={item.id}
+              onClick={() => handleNavClick(item.id)}
+              style={{
+                ...styles.navLink,
+                background: "none",
+                border: "none",
+                cursor: "pointer",
+                padding: 0,
+                color: activeSection === item.id ? "#c9a227" : "#fff",
+                transition: "color 0.3s ease",
+              }}
+            >
+              {item.label}
+            </button>
           ))}
         </div>
 
         {/* CTA - right side */}
-        <a href="#contact" className="nav-cta-desktop" style={{
-          ...styles.navCta,
-          position: "absolute",
-          right: 24,
-        }}>
+        <button
+          onClick={() => handleNavClick("contact")}
+          className="nav-cta-desktop"
+          style={{
+            ...styles.navCta,
+            position: "absolute",
+            right: 24,
+            border: "none",
+            cursor: "pointer",
+          }}
+        >
           Start a Project
-        </a>
+        </button>
 
         {/* Hamburger */}
         <button
@@ -89,19 +118,37 @@ function Navbar({ scrollY }) {
           zIndex: 150,
         }}>
           {navItems.map((item) => (
-            <a key={item} href={`#${item.toLowerCase()}`}
-              onClick={() => setMenuOpen(false)}
+            <button
+              key={item.id}
+              onClick={() => handleNavClick(item.id)}
               style={{
-                color: "#fff", textDecoration: "none", fontSize: 24,
-                fontFamily: "Syne, sans-serif", fontWeight: 700,
-              }}>
-              {item}
-            </a>
+                color: activeSection === item.id ? "#c9a227" : "#fff",
+                textDecoration: "none",
+                fontSize: 24,
+                fontFamily: "Syne, sans-serif",
+                fontWeight: 700,
+                background: "none",
+                border: "none",
+                cursor: "pointer",
+                transition: "color 0.3s ease",
+              }}
+            >
+              {item.label}
+            </button>
           ))}
-          <a href="#contact" onClick={() => setMenuOpen(false)}
-            style={{ ...styles.navCta, marginTop: 16, fontSize: 16, padding: "14px 32px" }}>
+          <button
+            onClick={() => handleNavClick("contact")}
+            style={{
+              ...styles.navCta,
+              marginTop: 16,
+              fontSize: 16,
+              padding: "14px 32px",
+              border: "none",
+              cursor: "pointer",
+            }}
+          >
             Start a Project
-          </a>
+          </button>
         </div>
       )}
     </nav>
