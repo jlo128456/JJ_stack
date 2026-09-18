@@ -44,7 +44,7 @@ function App() {
     );
     Object.values(refs.current).forEach((el) => el && observer.observe(el));
     return () => observer.disconnect();
-  }, []);
+  }, [activeSection]);
 
   const sectionAnim = (id) =>
     visibleSections.has(id)
