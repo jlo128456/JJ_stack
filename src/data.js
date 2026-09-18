@@ -12,6 +12,7 @@ export const projects = [
   { name: "Web app", type: "Job Management CRM", url: "https://padigital.com.au", image: "/pa-digital.png" },
   { name: "Python CRM with demo web replica", type: "Python CRM — Work orders, customers, inventory & invoicing.", url: "https://smartlinkappdemo.streamlit.app/", image: "/pa-crm.png" },
   { name: "JJ Stack", type: "Company Website", url: "https://jjstack.com.au", image: "/jj-stak.png" },
+  { name: "Scout Sign-In", type: "Professional attendance tracking", url: "https://jlo128456.github.io/scout_signin_app/", image: "/scout_signin.png" },
 ];
 
 /* ─── Starter design templates a customer can pick as a jumping-off point ─── */
